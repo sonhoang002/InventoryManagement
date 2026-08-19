@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+  </head>
+  <body>
+    <form action="/inventory/new" method="post">
+      <label for="monsterName">Name: </label>
+      <input type="text" name="monsterName" id="monsterName" />
+      <label for="monsterLevel">Level: </label>
+      <input type="number" name="monsterLevel" id="monsterLevel" />
+      <label for="monsterType">Type: </label>
+      <select name="monsterType" id="monsterType">
+        <option value="">All Types</option>
+        <option value="aquatic">Aquatic</option>
+        <option value="beast">Beast</option>
+        <option value="devil">Devil</option>
+        <option value="fairy">Fairy</option>
+        <option value="human">Human</option>
+        <option value="machine">Machine</option>
+        <option value="plant">Plant</option>
+        <option value="reptile">Reptile</option>
+        <option value="undead">Undead</option>
+      </select>
+      <label for="monsterEl">Element: </label>
+      <select name="monsterEl" id="monsterEl">
+        <option value="">All Elements</option>
+        <option value="none">None</option>
+        <option value="fire">Fire</option>
+        <option value="ice">Ice</option>
+        <option value="poison">Poison</option>
+        <option value="dark">Dark</option>
+        <option value="holy">Holy</option>
+        <option value="light">Light</option>
+      </select>
+      <button type="submit">Add new monster</button>
+    </form>
+  </body>
+</html>
