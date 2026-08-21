@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <title><%= title %> | Monster Book</title>
+  </head>
+  <body>
+    <%- include("./partial/redirectHeader") %>
+    <main class="detail-page">
+      <a class="back-link" href="/inventory"><span aria-hidden="true">←</span> Back to monsters</a>
+      <article class="detailMonsterInfo">
+        <div class="detail-heading">
+          <div>
+            <p class="eyebrow">Monster details</p>
+            <h1 class="name"><%= monsterName %></h1>
+          </div>
+          <div class="detail-level">Level <strong><%= monsterLevel %></strong></div>
+        </div>
+        <div class="detail-traits">
+          <div class="detail-trait"><span>Type</span><strong><%= monsterType %></strong></div>
+          <div class="detail-trait"><span>Element</span><strong><%= monsterEl %></strong></div>
+        </div>
+        <section class="detail-description">
+          <h2>About this monster</h2>
+          <p><%= monsterDescription || "No description has been added yet." %></p>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>

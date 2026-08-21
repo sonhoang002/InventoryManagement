@@ -5,6 +5,7 @@ const inventoryRouter = express.Router();
 /* GET users listing. */
 inventoryRouter.get("/", usersController.getInventory);
 inventoryRouter.get("/new", usersController.getNewMonsterForm);
+inventoryRouter.get("/:id", usersController.getMonster);
 
 inventoryRouter.post("/new", usersController.postNewMonster);
 

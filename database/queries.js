@@ -13,7 +13,15 @@ async function postNewMonster(monsterInfo) {
   );
 }
 
+async function getMonster(id) {
+  const { rows } = await pool.query("SELECT * FROM monsters WHERE id = $1", [
+    id,
+  ]);
+  return rows[0];
+}
+
 module.exports = {
   getAllMonsters,
   postNewMonster,
+  getMonster,
 };

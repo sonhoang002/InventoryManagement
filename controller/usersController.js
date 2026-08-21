@@ -21,3 +21,19 @@ exports.postNewMonster = async (req, res) => {
   await db.postNewMonster(req.body);
   res.redirect("/inventory");
 };
+
+exports.getMonster = async (req, res) => {
+  const { id, monstername, level, type, element, description } =
+    await db.getMonster(req.params.id);
+
+  console.log(id, monstername, level, type, element, description);
+  res.render("detailMonsterInfo", {
+    title: "Details",
+    id: id,
+    monsterName: monstername,
+    monsterLevel: level,
+    monsterType: type,
+    monsterEl: element,
+    monsterDescription: description,
+  });
+};

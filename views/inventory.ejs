@@ -28,6 +28,9 @@
               <div>Type: <%= monster.type %></div>
               <div>Element: <%= monster.element %></div>
             </div>
+            <a class="details-link" href="/inventory/<%= monster.id %>">
+              See details <span aria-hidden="true">→</span>
+            </a>
           </article>
         <% }) %>
       </section>
