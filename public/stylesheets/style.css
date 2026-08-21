@@ -1,8 +1,26 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+.allMonstersDiv {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 200px));
 }
 
-a {
-  color: #00B7FF;
+.monsterDiv {
+  display: flex;
+  flex-direction: column;
+  outline: auto;
+}
+
+.upperMonsterDiv,
+.lowerMonsterDiv {
+  gap: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.upperMonsterDiv > div,
+.lowerMonsterDiv > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

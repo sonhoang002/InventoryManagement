@@ -8,32 +8,32 @@
   <body>
     <form action="/inventory/new" method="post">
       <label for="monsterName">Name: </label>
-      <input type="text" name="monsterName" id="monsterName" />
+      <input type="text" name="monsterName" id="monsterName" required />
       <label for="monsterLevel">Level: </label>
-      <input type="number" name="monsterLevel" id="monsterLevel" />
+      <input type="number" name="monsterLevel" id="monsterLevel" required />
       <label for="monsterType">Type: </label>
-      <select name="monsterType" id="monsterType">
+      <select name="monsterType" id="monsterType" required>
         <option value="">All Types</option>
-        <option value="aquatic">Aquatic</option>
-        <option value="beast">Beast</option>
-        <option value="devil">Devil</option>
-        <option value="fairy">Fairy</option>
-        <option value="human">Human</option>
-        <option value="machine">Machine</option>
-        <option value="plant">Plant</option>
-        <option value="reptile">Reptile</option>
-        <option value="undead">Undead</option>
+        <option value="Aquatic">Aquatic</option>
+        <option value="Beast">Beast</option>
+        <option value="Devil">Devil</option>
+        <option value="Fairy">Fairy</option>
+        <option value="Human">Human</option>
+        <option value="Machine">Machine</option>
+        <option value="Plant">Plant</option>
+        <option value="Reptile">Reptile</option>
+        <option value="Undead">Undead</option>
       </select>
       <label for="monsterEl">Element: </label>
-      <select name="monsterEl" id="monsterEl">
+      <select name="monsterEl" id="monsterEl" required>
         <option value="">All Elements</option>
-        <option value="none">None</option>
-        <option value="fire">Fire</option>
-        <option value="ice">Ice</option>
-        <option value="poison">Poison</option>
-        <option value="dark">Dark</option>
-        <option value="holy">Holy</option>
-        <option value="light">Light</option>
+        <option value="None">None</option>
+        <option value="Fire">Fire</option>
+        <option value="Ice">Ice</option>
+        <option value="Poison">Poison</option>
+        <option value="Dark">Dark</option>
+        <option value="Holy">Holy</option>
+        <option value="Light">Light</option>
       </select>
       <button type="submit">Add new monster</button>
     </form>

@@ -3,7 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
-  <body></body>
+  <body>
+    <%- include("./partial/redirectHeader") %>
+
+    <div class="allMonstersDiv">
+      <% monsters.forEach((monster) => { %>
+        <div class="monsterDiv">
+           <div class="upperMonsterDiv">
+            <div><%= monster.monstername %></div>
+            <div><%= monster.level  %></div>
+          </div>
+          <div class="lowerMonsterDiv">
+            <div><%= monster.type  %></div>
+            <div><%= monster.element  %></div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </body>
 </html>

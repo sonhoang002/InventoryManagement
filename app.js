@@ -5,6 +5,7 @@ const path = require("path");
 
 const indexRouter = require("./routes/indexRoute");
 const inventoryRouter = require("./routes/inventoryRoute");
+const aboutRouter = require("./routes/aboutRoute");
 
 const PORT = process.env.PORT || 5000;
 
@@ -19,6 +20,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/inventory", inventoryRouter);
+app.use("/about", aboutRouter);
 
 app.use((req, res) => {
   res.status(404).render("error");
