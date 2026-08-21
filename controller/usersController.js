@@ -19,5 +19,5 @@ exports.getNewMonsterForm = (req, res) => {
 
 exports.postNewMonster = async (req, res) => {
   await db.postNewMonster(req.body);
-  res.redirect("/");
+  res.redirect("/inventory");
 };

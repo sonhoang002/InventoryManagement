@@ -3,9 +3,38 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= title %></title>
+    <title><%= title %> | Monster Index</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <body>
-    <%- include("./partial/redirectHeader") %> About Page
+    <%- include("./partial/redirectHeader") %>
+    <main>
+      <div class="about-grid">
+        <div>
+          <h1>Every monster has a story.</h1>
+        </div>
+        <div class="about-copy">
+          <p>
+            Monster Book is a simple place to keep the creatures you discover
+            along the way.
+          </p>
+          <p>
+            Add their name, level, type, and element—then watch your collection
+            grow.
+          </p>
+          <div class="about-list">
+            <div class="about-item">
+              <span>01</span><strong>Find a monster</strong>
+            </div>
+            <div class="about-item">
+              <span>02</span><strong>Write down its traits</strong>
+            </div>
+            <div class="about-item">
+              <span>03</span><strong>Grow your collection</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
   </body>
 </html>

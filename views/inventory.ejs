@@ -3,25 +3,42 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= title %></title>
+    <meta name="description" content="Browse every creature in the Monster Index." />
+    <title><%= title %> | Monster Index</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
-  <body>
-    <%- include("./partial/redirectHeader") %>
-
-    <div class="allMonstersDiv">
-      <% monsters.forEach((monster) => { %>
-        <div class="monsterDiv">
-           <div class="upperMonsterDiv">
-            <div><%= monster.monstername %></div>
-            <div><%= monster.level  %></div>
-          </div>
-          <div class="lowerMonsterDiv">
-            <div><%= monster.type  %></div>
-            <div><%= monster.element  %></div>
-          </div>
-        </div>
-      <% }) %>
+<body>
+  <%- include("./partial/redirectHeader") %>
+  <main>
+    <div class="page-heading">
+      <div>
+        <h1>Monster Book</h1>
+      </div>
+      <span class="count"><%= monsters.length %> monster<%= monsters.length === 1 ? "" : "s" %></span>
     </div>
-  </body>
+    <% if (monsters.length) { %>
+      <section class="allMonstersDiv" aria-label="Monster inventory">
+        <% monsters.forEach((monster) => { %>
+          <article class="monsterDiv">
+            <div class="upperMonsterDiv">
+              <div class="monster-name">Name: <%= monster.monstername %></div>
+              <div class="monster-level" title="Level">Level: <%= monster.level %></div>
+            </div>
+            <div class="lowerMonsterDiv">
+              <div>Type: <%= monster.type %></div>
+              <div>Element: <%= monster.element %></div>
+            </div>
+          </article>
+        <% }) %>
+      </section>
+      <a class="button" href="/inventory/new">Add a monster</a>
+    <% } else { %>
+      <div class="empty-state">
+        <h2>No monsters yet!</h2>
+        <p class="lede">Your collection is ready for its first friend.</p>
+        <a class="button" href="/inventory/new">Add a monster</a>
+      </div>
+    <% } %>
+</main>
+</body>
 </html>

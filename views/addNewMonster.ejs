@@ -3,39 +3,72 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= title %></title>
+    <title><%= title %> | Monster Index</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <body>
-    <form action="/inventory/new" method="post">
-      <label for="monsterName">Name: </label>
-      <input type="text" name="monsterName" id="monsterName" required />
-      <label for="monsterLevel">Level: </label>
-      <input type="number" name="monsterLevel" id="monsterLevel" required />
-      <label for="monsterType">Type: </label>
-      <select name="monsterType" id="monsterType" required>
-        <option value="">All Types</option>
-        <option value="Aquatic">Aquatic</option>
-        <option value="Beast">Beast</option>
-        <option value="Devil">Devil</option>
-        <option value="Fairy">Fairy</option>
-        <option value="Human">Human</option>
-        <option value="Machine">Machine</option>
-        <option value="Plant">Plant</option>
-        <option value="Reptile">Reptile</option>
-        <option value="Undead">Undead</option>
-      </select>
-      <label for="monsterEl">Element: </label>
-      <select name="monsterEl" id="monsterEl" required>
-        <option value="">All Elements</option>
-        <option value="None">None</option>
-        <option value="Fire">Fire</option>
-        <option value="Ice">Ice</option>
-        <option value="Poison">Poison</option>
-        <option value="Dark">Dark</option>
-        <option value="Holy">Holy</option>
-        <option value="Light">Light</option>
-      </select>
-      <button type="submit">Add new monster</button>
-    </form>
+    <%- include("./partial/redirectHeader") %>
+    <main>
+      <div class="form-shell">
+        <div>
+          <p class="eyebrow">New discovery</p>
+          <h1>Add a monster!</h1>
+          <p class="lede">What kind of creature did you find?</p>
+        </div>
+        <form class="monster-form" action="/inventory/new" method="post">
+          <div class="field">
+            <label for="monsterName">Monster name</label
+            ><input
+              type="text"
+              name="monsterName"
+              id="monsterName"
+              placeholder="e.g. Black Drake"
+              autocomplete="off"
+              required
+            />
+          </div>
+          <div class="field">
+            <label for="monsterLevel">Threat level</label
+            ><input
+              type="number"
+              name="monsterLevel"
+              id="monsterLevel"
+              min="1"
+              placeholder="1"
+              required
+            />
+          </div>
+          <div class="field">
+            <label for="monsterType">Type</label
+            ><select name="monsterType" id="monsterType" required>
+              <option value="" disabled selected>Select a type</option>
+              <option value="Aquatic">Aquatic</option>
+              <option value="Beast">Beast</option>
+              <option value="Devil">Devil</option>
+              <option value="Fairy">Fairy</option>
+              <option value="Human">Human</option>
+              <option value="Machine">Machine</option>
+              <option value="Plant">Plant</option>
+              <option value="Reptile">Reptile</option>
+              <option value="Undead">Undead</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="monsterEl">Elemental affinity</label
+            ><select name="monsterEl" id="monsterEl" required>
+              <option value="" disabled selected>Select an element</option>
+              <option value="None">None</option>
+              <option value="Fire">Fire</option>
+              <option value="Ice">Ice</option>
+              <option value="Poison">Poison</option>
+              <option value="Dark">Dark</option>
+              <option value="Holy">Holy</option>
+              <option value="Light">Light</option>
+            </select>
+          </div>
+          <button class="button" type="submit">Add to inventory</button>
+        </form>
+      </div>
+    </main>
   </body>
 </html>

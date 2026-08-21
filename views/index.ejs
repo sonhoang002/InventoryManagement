@@ -3,10 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= title %></title>
+    <meta name="description" content="A friendly collection of monsters." />
+    <title><%= title %> | Monster Book</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <body>
-    <%- include("./partial/redirectHeader") %> HOME PAGE
-    <a href="/inventory">Inventory</a>
+    <%- include("./partial/redirectHeader") %>
+    <main>
+      <section class="hero">
+        <h1>Meet the<br />monsters!</h1>
+        <p class="lede">
+          Keep track of every creature you meet on your adventure.
+        </p>
+        <div><a class="button" href="/inventory">Open monster book</a></div>
+      </section>
+    </main>
   </body>
 </html>
