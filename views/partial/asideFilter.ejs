@@ -97,9 +97,30 @@
         </div>
       </div>
 
-      <div class="filter-coming-soon">
-        <span>Region</span>
-        <small>Coming soon</small>
+      <div class="regionFilter">
+        <div class="filter-title">Region</div>
+        <% [
+          "Henesys",
+          "Ellinia",
+          "Perion",
+          "Kerning City",
+          "Sleepywood",
+          "Lith Harbor",
+          "Maple Island",
+          "Forgotten Hollow",
+          "Orbis",
+          "El Nath"
+        ].forEach((region, index) => { %>
+          <div>
+            <input
+              type="checkbox"
+              name="monsterRegion"
+              value="<%= region %>"
+              id="region-<%= index %>"
+            />
+            <label for="region-<%= index %>"><%= region %></label>
+          </div>
+        <% }) %>
       </div>
     </div>
   </form>

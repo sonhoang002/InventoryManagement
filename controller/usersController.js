@@ -5,8 +5,8 @@ exports.getHomepage = (req, res) => {
 };
 
 exports.getInventory = async (req, res) => {
-  const matchingMonster = await db.getMatchingMonster();
-  res.render("inventory", { title: "Inventory", monsters: matchingMonster });
+  const allMonsters = await db.getAllMonsters();
+  res.render("inventory", { title: "Inventory", monsters: allMonsters });
 };
 
 exports.getAboutPage = (req, res) => {
@@ -23,12 +23,19 @@ exports.postNewMonster = async (req, res) => {
 };
 
 exports.getMonster = async (req, res) => {
-  const { id, monstername, level, type, element, description, regionname } =
-    await db.getMonster(req.params.id);
+  const {
+    monster_id,
+    monstername,
+    level,
+    type,
+    element,
+    description,
+    regionname,
+  } = await db.getMonster(req.params.id);
 
   res.render("detailMonsterInfo", {
     title: "Details",
-    id: id,
+    id: monster_id,
     monsterName: monstername,
     monsterLevel: level,
     monsterType: type,

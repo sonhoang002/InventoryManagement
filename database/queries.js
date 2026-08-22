@@ -20,7 +20,7 @@ async function postNewMonster(monsterInfo) {
     [monsterName, monsterType, monsterLevel, monsterEl, description],
   );
   const regionResult = await pool.query(
-    "INSERT INTO region (regionname) VALUES ($1) RERTURNING id",
+    "INSERT INTO region (regionname) VALUES ($1) RETURNING id",
     [monsterRegion],
   );
 
@@ -30,15 +30,30 @@ async function postNewMonster(monsterInfo) {
   await pool.query(
     `INSERT INTO region_assign (region_id, monster_id)
    VALUES ($1, $2)`,
-    [regionId, monsterId],
+    [regionID, monsterID],
   );
 }
 
 async function getMonster(id) {
   const { rows } = await pool.query(
-    "SELECT * FROM monsters JOIN region_assign ON monsters.id = region_assign.monster_id JOIN region ON region.id = region_assign.region_id WHERE monsters.id = $1",
+    `SELECT
+      region.id AS region_id,
+      region.regionname,
+      monsters.id AS monster_id,
+      monsters.monstername,
+      monsters.type,
+      monsters.level,
+      monsters.element,
+      monsters.description 
+    FROM region
+    JOIN region_assign
+      ON region.id = region_assign.region_id
+    JOIN monsters
+      ON region_assign.monster_id = monsters.id
+    WHERE region.id = $1`,
     [id],
   );
+
   return rows[0];
 }
 
@@ -80,11 +95,10 @@ async function getAllRegion(req, res) {
   return rows;
 }
 
-async function getMatchingMonster(req, res) {
+async function getAllMonsters(req, res) {
   const { rows } = await pool.query(
     "SELECT * FROM monsters JOIN region_assign ON monsters.id = region_assign.monster_id JOIN region ON region.id = region_assign.region_id",
   );
-  console.log(rows);
   return rows;
 }
 
@@ -93,5 +107,5 @@ module.exports = {
   getMonster,
   postUpdatedMonster,
   getAllRegion,
-  getMatchingMonster,
+  getAllMonsters,
 };
