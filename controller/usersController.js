@@ -26,7 +26,6 @@ exports.getMonster = async (req, res) => {
   const { id, monstername, level, type, element, description } =
     await db.getMonster(req.params.id);
 
-  console.log(id, monstername, level, type, element, description);
   res.render("detailMonsterInfo", {
     title: "Details",
     id: id,
@@ -36,4 +35,23 @@ exports.getMonster = async (req, res) => {
     monsterEl: element,
     monsterDescription: description,
   });
+};
+
+exports.getUpdateForm = async (req, res) => {
+  const { id, monstername, level, type, element, description } =
+    await db.getMonster(req.params.id);
+  res.render("detailMonsterInfo", {
+    title: "Update",
+    id: id,
+    monsterName: monstername,
+    monsterLevel: level,
+    monsterType: type,
+    monsterEl: element,
+    monsterDescription: description,
+  });
+};
+
+exports.postUpdateForm = async (req, res) => {
+  await db.postUpdatedMonster(req.body);
+  res.redirect(`/inventory/${req.params.id}`);
 };

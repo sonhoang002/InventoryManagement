@@ -3,17 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="/stylesheets/home.css" />
+    <link rel="stylesheet" href="/stylesheets/inventory.css" />
     <title><%= title %> | Monster Book</title>
   </head>
   <body>
     <%- include("./partial/redirectHeader") %>
     <main class="detail-page">
       <a class="back-link" href="/inventory"><span aria-hidden="true">←</span> Back to monsters</a>
+      <% if (title === "Details") { %>
       <article class="detailMonsterInfo">
         <div class="detail-heading">
           <div>
-            <p class="eyebrow">Monster details</p>
             <h1 class="name"><%= monsterName %></h1>
           </div>
           <div class="detail-level">Level <strong><%= monsterLevel %></strong></div>
@@ -27,6 +28,59 @@
           <p><%= monsterDescription || "No description has been added yet." %></p>
         </section>
       </article>
+        <a class="update-link" href="/inventory/<%= id %>/update">
+          <span aria-hidden="true">✎</span> Update information
+        </a>
+      <% } else { %>
+        <form class="detailMonsterInfo detail-edit-form" action="/inventory/<%= id %>/update" method="post">
+          <input type="hidden" name="id" value="<%= id %>" />
+          <div class="detail-heading">
+            <div>
+              <label for="monsterName">Monster name</label>
+              <input
+                class="edit-name"
+                type="text"
+                name="monsterName"
+                id="monsterName"
+                value="<%= monsterName %>"
+                autocomplete="off"
+                required
+              />
+            </div>
+            <div class="edit-level">
+              <label for="monsterLevel">Level</label>
+              <input
+                type="number"
+                name="monsterLevel"
+                id="monsterLevel"
+                min="1"
+                value="<%= monsterLevel %>"
+                required
+              />
+            </div>
+          </div>
+          <div class="detail-traits">
+            <div class="edit-field"><label for="monsterType">Type</label><select name="monsterType" id="monsterType" required>
+              <% ["Aquatic", "Beast", "Devil", "Fairy", "Human", "Machine", "Plant", "Reptile", "Undead"].forEach((type) => { %>
+                <option value="<%= type %>" <%= monsterType === type ? "selected" : "" %>><%= type %></option>
+              <% }) %>
+            </select></div>
+            <div class="edit-field"><label for="monsterEl">Element</label><select name="monsterEl" id="monsterEl" required>
+              <% ["None", "Fire", "Ice", "Poison", "Dark", "Holy", "Light"].forEach((element) => { %>
+                <option value="<%= element %>" <%= monsterEl === element ? "selected" : "" %>><%= element %></option>
+              <% }) %>
+            </select></div>
+          </div>
+          <section class="detail-description">
+            <label for="description">About this monster</label>
+            <textarea name="description" id="description" rows="5"><%= monsterDescription || "" %></textarea>
+          </section>
+          <div class="edit-actions">
+            <a class="cancel-link" href="/inventory/<%= id %>">Cancel</a>
+            <button class="button" type="submit">Save changes</button>
+          </div>
+        </form>
+      <% } %>
     </main>
   </body>
 </html>

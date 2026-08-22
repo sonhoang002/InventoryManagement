@@ -1,0 +1,106 @@
+<aside class="filter-panel" aria-label="Monster filters">
+  <div class="filter-heading">
+    <span aria-hidden="true">☰</span>
+    <h2>Filters</h2>
+  </div>
+  <form action="/inventory" method="get">
+    <div class="filterContainer">
+      <div class="typeFilter">
+        <div class="filter-title">Type</div>
+        <div>
+          <input
+            type="checkbox"
+            name="monsterType"
+            value="Aquatic"
+            id="aquatic"
+          />
+          <label for="aquatic">Aquatic</label>
+        </div>
+        <div>
+          <input type="checkbox" name="monsterType" value="Beast" id="beast" />
+          <label for="beast">Beast</label>
+        </div>
+        <div>
+          <input type="checkbox" name="monsterType" value="Devil" id="devil" />
+          <label for="devil">Devil</label>
+        </div>
+        <div>
+          <input type="checkbox" name="monsterType" value="Fairy" id="fairy" />
+          <label for="fairy">Fairy</label>
+        </div>
+        <div>
+          <input type="checkbox" name="monsterType" value="Human" id="human" />
+          <label for="human">Human</label>
+        </div>
+        <div>
+          <input
+            type="checkbox"
+            name="monsterType"
+            value="Machine"
+            id="machine"
+          />
+          <label for="machine">Machine</label>
+        </div>
+        <div>
+          <input type="checkbox" name="monsterType" value="Plant" id="plant" />
+          <label for="plant">Plant</label>
+        </div>
+        <div>
+          <input
+            type="checkbox"
+            name="monsterType"
+            value="Reptile"
+            id="reptile"
+          />
+          <label for="reptile">Reptile</label>
+        </div>
+        <div>
+          <input
+            type="checkbox"
+            name="monsterType"
+            value="Undead"
+            id="undead"
+          />
+          <label for="undead">Undead</label>
+        </div>
+      </div>
+
+      <div class="elementFilter">
+        <div class="filter-title">Element</div>
+        <div>
+          <input type="checkbox" name="monsterEl" value="None" id="none" />
+          <label for="none">None</label>
+        </div>
+        <div>
+          <input type="checkbox" name="monsterEl" value="Fire" id="fire" />
+          <label for="fire">Fire</label>
+        </div>
+        <div>
+          <input type="checkbox" name="monsterEl" value="Ice" id="ice" />
+          <label for="ice">Ice</label>
+        </div>
+        <div>
+          <input type="checkbox" name="monsterEl" value="Poison" id="poison" />
+          <label for="poison">Poison</label>
+        </div>
+        <div>
+          <input type="checkbox" name="monsterEl" value="Dark" id="dark" />
+          <label for="dark">Dark</label>
+        </div>
+        <div>
+          <input type="checkbox" name="monsterEl" value="Holy" id="holy" />
+          <label for="holy">Holy</label>
+        </div>
+        <div>
+          <input type="checkbox" name="monsterEl" value="Light" id="light" />
+          <label for="light">Light</label>
+        </div>
+      </div>
+
+      <div class="filter-coming-soon">
+        <span>Region</span>
+        <small>Coming soon</small>
+      </div>
+    </div>
+  </form>
+</aside>
