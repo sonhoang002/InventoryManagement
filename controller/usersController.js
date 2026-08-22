@@ -5,8 +5,8 @@ exports.getHomepage = (req, res) => {
 };
 
 exports.getInventory = async (req, res) => {
-  const allMonsters = await db.getAllMonsters();
-  res.render("inventory", { title: "Inventory", monsters: allMonsters });
+  const matchingMonster = await db.getMatchingMonster();
+  res.render("inventory", { title: "Inventory", monsters: matchingMonster });
 };
 
 exports.getAboutPage = (req, res) => {
@@ -23,7 +23,7 @@ exports.postNewMonster = async (req, res) => {
 };
 
 exports.getMonster = async (req, res) => {
-  const { id, monstername, level, type, element, description } =
+  const { id, monstername, level, type, element, description, regionname } =
     await db.getMonster(req.params.id);
 
   res.render("detailMonsterInfo", {
@@ -34,11 +34,12 @@ exports.getMonster = async (req, res) => {
     monsterType: type,
     monsterEl: element,
     monsterDescription: description,
+    monsterRegion: regionname,
   });
 };
 
 exports.getUpdateForm = async (req, res) => {
-  const { id, monstername, level, type, element, description } =
+  const { id, monstername, level, type, element, description, regionname } =
     await db.getMonster(req.params.id);
   res.render("detailMonsterInfo", {
     title: "Update",
@@ -48,6 +49,7 @@ exports.getUpdateForm = async (req, res) => {
     monsterType: type,
     monsterEl: element,
     monsterDescription: description,
+    monsterRegion: regionname,
   });
 };
 

@@ -7,6 +7,9 @@ body {
   left: 12px;
   width: 164px;
 }
+.filter-toggle {
+  display: none;
+}
 .filter-panel {
   position: sticky;
   top: 18px;
@@ -170,6 +173,16 @@ body {
   border-radius: 999px;
   background: var(--paper);
 }
+.monster-region {
+  align-self: flex-start;
+  margin-top: 10px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  color: var(--muted);
+  background: var(--paper);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
 .details-link {
   display: flex;
   margin-top: 18px;
@@ -250,6 +263,25 @@ body {
   color: var(--muted);
   font-size: 0.72rem;
   font-weight: 800;
+}
+.detail-region {
+  margin-top: 12px;
+}
+.detail-region-card {
+  padding: 14px 16px;
+  border: 2px solid var(--soft);
+  border-radius: 14px;
+  background: var(--paper);
+}
+.detail-region-card span {
+  display: block;
+  margin-bottom: 2px;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+.detailRegion {
+  margin-top: 12px;
 }
 .detail-description {
   margin-top: 30px;
@@ -423,15 +455,54 @@ select:focus {
   outline: 3px solid var(--soft);
 }
 
-@media (max-width: 1250px) {
+@media (max-width: 1400px) {
   .asideParent {
-    position: static;
-    width: min(1040px, calc(100% - 32px));
-    margin: 0 auto;
+    /* position: fixed; */
+    z-index: 20;
+    top: 88px;
+    bottom: auto;
+    left: 12px;
+    width: min(280px, calc(100% - 24px));
+  }
+  .filter-toggle {
+    display: inline-flex;
+    min-height: 44px;
+    padding: 0 15px;
+    gap: 8px;
+    align-items: center;
+    border: 2px solid var(--ink);
+    border-radius: 13px;
+    color: var(--card);
+    background: var(--ink);
+    box-shadow: 0 4px 0 #888;
+    font: inherit;
+    font-size: 0.84rem;
+    font-weight: 900;
+    cursor: pointer;
+  }
+  .filter-toggle:hover,
+  .filter-toggle:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 #888;
+  }
+  .filter-toggle:focus-visible {
+    outline: 3px solid var(--line);
+    outline-offset: 3px;
   }
   .filter-panel {
     position: static;
-    margin-top: 36px;
+    display: none;
+    max-height: calc(100vh - 154px);
+    margin-top: 10px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  .asideParent.is-open .filter-panel {
+    background: rgba(255, 255, 255, 0.8);
+
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    display: block;
   }
   .filterContainer {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -439,8 +510,18 @@ select:focus {
   .filter-coming-soon {
     grid-column: 1 / -1;
   }
+
+  main {
+    padding-top: calc(52px + 82px);
+  }
 }
 @media (max-width: 700px) {
+  .filter-toggle {
+    margin-top: 20px;
+  }
+  .asideParent {
+    top: 78px;
+  }
   .page-heading {
     align-items: flex-start;
     flex-direction: column;
@@ -475,6 +556,9 @@ select:focus {
   }
   .detail-level strong {
     display: inline;
+  }
+  main {
+    padding-top: calc(52px + 102px);
   }
 }
 @media (max-width: 430px) {
