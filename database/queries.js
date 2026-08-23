@@ -34,29 +34,6 @@ async function postNewMonster(monsterInfo) {
   );
 }
 
-async function getMonster(id) {
-  const { rows } = await pool.query(
-    `SELECT
-      region.id AS region_id,
-      region.regionname,
-      monsters.id AS monster_id,
-      monsters.monstername,
-      monsters.type,
-      monsters.level,
-      monsters.element,
-      monsters.description 
-    FROM region
-    JOIN region_assign
-      ON region.id = region_assign.region_id
-    JOIN monsters
-      ON region_assign.monster_id = monsters.id
-    WHERE region.id = $1`,
-    [id],
-  );
-
-  return rows[0];
-}
-
 async function postUpdatedMonster(updatedMonsterInfo) {
   const {
     id,
@@ -95,9 +72,87 @@ async function getAllRegion(req, res) {
   return rows;
 }
 
+async function getMonster(id) {
+  const { rows } = await pool.query(
+    `SELECT
+      region.id AS region_id,
+      region.regionname,
+      monsters.id AS monster_id,
+      monsters.monstername,
+      monsters.type,
+      monsters.level,
+      monsters.element,
+      monsters.description 
+    FROM region
+    JOIN region_assign
+      ON region.id = region_assign.region_id
+    JOIN monsters
+      ON region_assign.monster_id = monsters.id
+    WHERE monster_id = $1`,
+    [id],
+  );
+
+  return rows[0];
+}
+
 async function getAllMonsters(req, res) {
   const { rows } = await pool.query(
-    "SELECT * FROM monsters JOIN region_assign ON monsters.id = region_assign.monster_id JOIN region ON region.id = region_assign.region_id",
+    `SELECT 
+      monsters.id AS monster_id,
+      monsters.monstername,
+      monsters.type,
+      monsters.level,
+      monsters.element,
+      monsters.description,
+      region.id AS region_id,
+      region.regionname 
+    FROM monsters JOIN region_assign ON monsters.id = region_assign.monster_id JOIN region ON region.id = region_assign.region_id`,
+  );
+  return rows;
+}
+
+async function getAllSpecificMonsters(req) {
+  let { monsterType, monsterEl, monsterRegion } = req;
+
+  monsterType = Array.isArray(monsterType)
+    ? monsterType
+    : monsterType
+      ? [monsterType]
+      : [];
+
+  monsterEl = Array.isArray(monsterEl)
+    ? monsterEl
+    : monsterEl
+      ? [monsterEl]
+      : [];
+
+  monsterRegion = Array.isArray(monsterRegion)
+    ? monsterRegion
+    : monsterRegion
+      ? [monsterRegion]
+      : [];
+
+  const { rows } = await pool.query(
+    `
+    SELECT 
+      *  
+    FROM 
+      monsters 
+    JOIN 
+      region_assign 
+    ON 
+      monsters.id = region_assign.monster_id 
+    JOIN 
+      region 
+    ON 
+      region.id = region_assign.region_id
+    WHERE
+      monsters.type = ANY($1)
+    OR
+      monsters.element = ANY($2)
+    OR
+      region.regionname = ANY($3)`,
+    [monsterType, monsterEl, monsterRegion],
   );
   return rows;
 }
@@ -108,4 +163,5 @@ module.exports = {
   postUpdatedMonster,
   getAllRegion,
   getAllMonsters,
+  getAllSpecificMonsters,
 };

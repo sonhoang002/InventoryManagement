@@ -4,11 +4,6 @@ exports.getHomepage = (req, res) => {
   res.render("index", { title: "Homepage" });
 };
 
-exports.getInventory = async (req, res) => {
-  const allMonsters = await db.getAllMonsters();
-  res.render("inventory", { title: "Inventory", monsters: allMonsters });
-};
-
 exports.getAboutPage = (req, res) => {
   res.render("about", { title: "About Page" });
 };
@@ -45,12 +40,35 @@ exports.getMonster = async (req, res) => {
   });
 };
 
+exports.getInventory = async (req, res) => {
+  let allMonsters;
+
+  if (Object.keys(req.query).length > 0) {
+    allMonsters = await db.getAllSpecificMonsters(req.query);
+  } else {
+    allMonsters = await db.getAllMonsters();
+  }
+
+  res.render("inventory", {
+    title: "Inventory",
+    monsters: allMonsters,
+  });
+};
+
 exports.getUpdateForm = async (req, res) => {
-  const { id, monstername, level, type, element, description, regionname } =
-    await db.getMonster(req.params.id);
+  const {
+    monster_id,
+    monstername,
+    level,
+    type,
+    element,
+    description,
+    regionname,
+  } = await db.getMonster(req.params.id);
+
   res.render("detailMonsterInfo", {
     title: "Update",
-    id: id,
+    id: monster_id,
     monsterName: monstername,
     monsterLevel: level,
     monsterType: type,

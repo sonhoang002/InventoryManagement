@@ -1,3 +1,58 @@
+.passcode-page {
+  display: grid;
+  min-height: calc(100vh - 90px);
+  place-items: center;
+}
+.passcode-card {
+  width: min(460px, 100%);
+  padding: clamp(26px, 5vw, 42px);
+  border: 2px solid var(--ink);
+  border-radius: 24px;
+  background: var(--card);
+  box-shadow: 7px 7px 0 var(--ink);
+  text-align: center;
+}
+.passcode-icon {
+  display: grid;
+  width: 54px;
+  height: 54px;
+  margin: 0 auto 18px;
+  place-items: center;
+  border-radius: 18px;
+  color: var(--card);
+  background: var(--ink);
+  font-size: 1.25rem;
+}
+.passcode-card h1 {
+  margin-bottom: 12px;
+  font-size: clamp(2.3rem, 8vw, 3.5rem);
+}
+.passcode-card .lede {
+  margin-right: auto;
+  margin-left: auto;
+}
+.passcode-form {
+  display: grid;
+  gap: 10px;
+  text-align: left;
+}
+.passcode-form .button {
+  margin-top: 8px;
+}
+.passcode-message {
+  margin-bottom: 18px;
+  padding: 12px;
+  border: 2px dashed var(--line);
+  border-radius: 12px;
+  background: var(--paper);
+  font-size: 0.86rem;
+  font-weight: 800;
+  line-height: 1.5;
+}
+.passcode-card > .cancel-link {
+  display: inline-block;
+  margin-top: 18px;
+}
 body {
   position: relative;
 }
@@ -90,6 +145,25 @@ body {
   font-size: 0.8rem;
   font-weight: 800;
   cursor: pointer;
+}
+.filter-panel button[type="submit"] {
+  width: 100%;
+  min-height: 40px;
+  margin-top: 18px;
+  border: 2px solid var(--ink);
+  border-radius: 11px;
+  color: var(--card);
+  background: var(--ink);
+  box-shadow: 0 3px 0 #888;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 900;
+  cursor: pointer;
+}
+.filter-panel button[type="submit"]:hover,
+.filter-panel button[type="submit"]:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 0 #888;
 }
 .filter-coming-soon {
   display: flex;
@@ -301,7 +375,8 @@ body {
   color: var(--muted);
   line-height: 1.7;
 }
-.update-link {
+.update-link,
+.delete-btn {
   display: inline-flex;
   margin-top: 24px;
   padding: 10px 14px;
@@ -315,7 +390,8 @@ body {
   font-weight: 900;
   text-decoration: none;
 }
-.update-link:hover {
+.update-link:hover,
+.delete-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 5px 0 var(--ink);
 }
@@ -328,6 +404,12 @@ body {
 .detail-edit-form textarea {
   border-color: var(--ink);
   background: var(--paper);
+}
+.optionsContainer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
 }
 .edit-name {
   min-height: auto;

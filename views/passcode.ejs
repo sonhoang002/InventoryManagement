@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %> | Monster Book</title>
+    <link rel="stylesheet" href="/stylesheets/home.css" />
+    <link rel="stylesheet" href="/stylesheets/inventory.css" />
+  </head>
+  <body>
+    <%- include("./partial/redirectHeader") %>
+    <main class="passcode-page">
+      <section class="passcode-card">
+        <div class="passcode-icon" aria-hidden="true">✦</div>
+        <p class="eyebrow">Editors only</p>
+        <h1>Secret passcode</h1>
+        <p class="lede">Enter the passcode to add or update a monster.</p>
+
+        <% if (!isConfigured) { %>
+          <p class="passcode-message" role="alert">
+            Set <code>MONSTER_ADMIN_PASSCODE</code> in your .env file first.
+          </p>
+        <% } else { %>
+          <% if (error) { %><p class="passcode-message" role="alert"><%= error %></p><% } %>
+          <form class="passcode-form" action="/inventory/access" method="post">
+            <input type="hidden" name="returnTo" value="<%= returnTo %>" />
+            <label for="passcode">Passcode</label>
+            <input
+              type="password"
+              name="passcode"
+              id="passcode"
+              autocomplete="current-password"
+              autofocus
+              required
+            />
+            <button class="button" type="submit">Unlock editor</button>
+          </form>
+        <% } %>
+        <a class="cancel-link" href="/inventory">Back to monsters</a>
+      </section>
+    </main>
+  </body>
+</html>

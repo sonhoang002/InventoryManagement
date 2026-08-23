@@ -1,14 +1,35 @@
 const express = require("express");
 const usersController = require("../controller/usersController");
+const {
+  requireEditorAccess,
+  verifyEditorPasscode,
+} = require("../middleware/passcodeAuth");
 const inventoryRouter = express.Router();
 
 /* GET users listing. */
 inventoryRouter.get("/", usersController.getInventory);
-inventoryRouter.get("/new", usersController.getNewMonsterForm);
+inventoryRouter.post("/access", verifyEditorPasscode);
+inventoryRouter.get(
+  "/new",
+  requireEditorAccess,
+  usersController.getNewMonsterForm,
+);
 inventoryRouter.get("/:id", usersController.getMonster);
-inventoryRouter.get("/:id/update", usersController.getUpdateForm);
+inventoryRouter.get(
+  "/:id/update",
+  requireEditorAccess,
+  usersController.getUpdateForm,
+);
 
-inventoryRouter.post("/:id/update", usersController.postUpdateForm);
-inventoryRouter.post("/new", usersController.postNewMonster);
+inventoryRouter.post(
+  "/:id/update",
+  requireEditorAccess,
+  usersController.postUpdateForm,
+);
+inventoryRouter.post(
+  "/new",
+  requireEditorAccess,
+  usersController.postNewMonster,
+);
 
 module.exports = inventoryRouter;

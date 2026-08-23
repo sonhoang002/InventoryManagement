@@ -31,9 +31,14 @@
           <p><%= monsterDescription || "No description has been added yet." %></p>
         </section>
       </article>
-        <a class="update-link" href="/inventory/<%= id %>/update">
-          <span aria-hidden="true">✎</span> Update information
-        </a>
+        <div class="optionsContainer">
+          <a class="update-link" href="/inventory/<%= id %>/update">
+            <span aria-hidden="true">✎</span> Update information
+          </a>
+          <form action="/inventory/<%= id %>/delete">
+            <button class="delete-btn" type="submit">Delete</button>
+          </form>
+        </div>
       <% } else { %>
         <form class="detailMonsterInfo detail-edit-form" action="/inventory/<%= id %>/update" method="post">
           <input type="hidden" name="id" value="<%= id %>" />
