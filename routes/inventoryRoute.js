@@ -22,6 +22,11 @@ inventoryRouter.get(
 );
 
 inventoryRouter.post(
+  "/:id/delete",
+  requireEditorAccess,
+  usersController.postNewDeleteRequest,
+);
+inventoryRouter.post(
   "/:id/update",
   requireEditorAccess,
   usersController.postUpdateForm,

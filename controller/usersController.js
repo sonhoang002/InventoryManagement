@@ -82,3 +82,8 @@ exports.postUpdateForm = async (req, res) => {
   await db.postUpdatedMonster(req.body);
   res.redirect(`/inventory/${req.params.id}`);
 };
+
+exports.postNewDeleteRequest = async (req, res) => {
+  await db.deleteMonster(req.params.id);
+  res.redirect("/inventory");
+};

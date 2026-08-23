@@ -157,7 +157,22 @@ async function getAllSpecificMonsters(req) {
   return rows;
 }
 
+async function deleteMonster(id) {
+  await pool.query(
+    `DELETE FROM region_assign
+     WHERE monster_id = $1`,
+    [id],
+  );
+
+  await pool.query(
+    `DELETE FROM monsters
+     WHERE id = $1`,
+    [id],
+  );
+}
+
 module.exports = {
+  deleteMonster,
   postNewMonster,
   getMonster,
   postUpdatedMonster,
