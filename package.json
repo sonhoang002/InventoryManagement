@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "db:seed:local": "node database/populateddb_local.js",
+    "db:seed": "node database/populateddb.js"
   },
   "dependencies": {
     "dotenv": "^17.4.2",

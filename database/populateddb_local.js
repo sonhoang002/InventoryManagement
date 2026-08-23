@@ -92,18 +92,29 @@ VALUES
 `;
 
 async function main() {
-  console.log("seeding...");
   const client = new Client({
-    host: "localhost",
-    user: "sh0101",
+    host: process.env.LOCAL_DB_HOST || "localhost",
+    user: process.env.LOCAL_DB_USER || "sh0101",
     password: process.env.LOCAL_DB_PASSWORD,
-    database: "maple",
-    port: 5432,
+    database: process.env.LOCAL_DB_NAME || "maple",
+    port: Number(process.env.LOCAL_DB_PORT) || 5432,
   });
-  await client.connect();
-  await client.query(SQL);
-  await client.end();
-  console.log("done");
+
+  try {
+    console.log("Connecting to the local database...");
+    await client.connect();
+    await client.query(SQL);
+    console.log("Local database seeded successfully.");
+  } finally {
+    await client.end();
+  }
 }
 
-main();
+if (require.main === module) {
+  main().catch((error) => {
+    console.error("Local database seed failed:", error);
+    process.exit(1);
+  });
+}
+
+module.exports = { SQL };
